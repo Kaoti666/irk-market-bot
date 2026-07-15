@@ -73,7 +73,7 @@ async def cancel_handler(callback: types.CallbackQuery, state: FSMContext):
 
 # ================= ВЕТКА ПРОДАТЬ =================
 # Добавляем state="*" — теперь кнопка сработает, даже если бот завис на каком-то шаге!
-@dp.message(F.text == "📦 Продать", state="*")
+@dp.message(F.text == "💰 Продать")
 async def start_sell(message: types.Message, state: FSMContext):
     await state.clear() # Полностью очищаем прошлые незавершенные попытки!
     await message.answer("📍 Шаг 1: Выберите ваш город на кнопках:", reply_markup=cities_menu())
