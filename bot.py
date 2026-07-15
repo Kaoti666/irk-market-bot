@@ -72,7 +72,7 @@ async def cancel_handler(callback: types.CallbackQuery, state: FSMContext):
 
 # ================= ВЕТКА ПРОДАТЬ =================
 # Добавляем state="*" — теперь кнопка сработает, даже если бот завис на каком-то шаге!
-@dp.message(F.text == "💰 Продать", StateFilter(None))
+@dp.message(F.text.contains("Продать"), StateFilter(None))
 async def start_sell(message: types.Message, state: FSMContext):
     await state.clear() # Полностью очищаем прошлые незавершенные попытки!
     await message.answer("📍 Шаг 1: Выберите ваш город на кнопках:", reply_markup=cities_menu())
@@ -126,7 +126,7 @@ async def process_phone(message: types.Message, state: FSMContext):
     await message.answer("🎉 Товар успешно сохранен в базу данных и выставлен!", reply_markup=main_menu())
 
 # ================= ВЕТКА КУПИТЬ =================
-@dp.message(F.text == "💸 Купить", StateFilter(None))
+@dp.message(F.text.contains("Купить"), StateFilter(None))
 async def start_buy(message: types.Message, state: FSMContext):
     await state.clear()
     await message.answer("📍 Выберите город для поиска:", reply_markup=cities_menu())
@@ -154,7 +154,7 @@ async def search_by_city(message: types.Message, state: FSMContext):
         await message.answer_photo(photo=photo, caption=caption, reply_markup=main_menu())
 
 # ================= МОИ ОБЪЯВЛЕНИЯ И УДАЛЕНИЕ =================
-@dp.message(F.text == "❌ Мои объявления", StateFilter(None))
+@dp.message(F.text.contains("объявления"), StateFilter(None))
 async def show_my_products(message: types.Message, state: FSMContext):
     await state.clear()
     conn = sqlite3.connect(DB_FILE)
