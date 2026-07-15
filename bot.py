@@ -127,7 +127,7 @@ async def process_phone(message: types.Message, state: FSMContext):
     await message.answer("🎉 Товар успешно сохранен в базу данных и выставлен!", reply_markup=main_menu())
 
 # ================= ВЕТКА КУПИТЬ =================
-@dp.message(F.text == "🛍 Купить", state="*")
+@dp.message(F.text == "💸 Купить")
 async def start_buy(message: types.Message, state: FSMContext):
     await state.clear()
     await message.answer("📍 Выберите город для поиска:", reply_markup=cities_menu())
@@ -155,7 +155,7 @@ async def search_by_city(message: types.Message, state: FSMContext):
         await message.answer_photo(photo=photo, caption=caption, reply_markup=main_menu())
 
 # ================= МОИ ОБЪЯВЛЕНИЯ И УДАЛЕНИЕ =================
-@dp.message(F.text == "❌ Мои объявления", state="*")
+@dp.message(F.text == "❌ Мои объявления")
 async def show_my_products(message: types.Message, state: FSMContext):
     await state.clear()
     conn = sqlite3.connect(DB_FILE)
