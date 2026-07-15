@@ -9,10 +9,9 @@ from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import (ReplyKeyboardMarkup, KeyboardButton, 
                             InlineKeyboardMarkup, InlineKeyboardButton)
 from aiohttp import web
-
+import os
 # === НАСТРОЙКА ===
-TOKEN = "8914164722:AAHXa2MHyP98fSFUS_hocfewwXW_-1knD5M"
-
+TOKEN = os.getenv("BOT_TOKEN")
 bot = Bot(token=TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
 
